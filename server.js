@@ -5,7 +5,7 @@
 var express = require('express');     //importing express
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://<14bce013>:<14bce013>@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
+var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
 var bodyParser = require('body-parser');
 
 
@@ -28,6 +28,20 @@ db.on('connect', function () {
 app.use(express.static(__dirname+"/dist"));
 app.use(bodyParser.json());
 
+
+const forceSSL = function() {
+  return function (req, res, next) {
+    //console.log("IP is in ssl:" + req.connection.remoteAddress);
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(
+        ['https://', req.get('Host'), req.url].join('')
+      );
+    }
+    next();
+  }
+}
+
+app.use(forceSSL());
 
 
 
