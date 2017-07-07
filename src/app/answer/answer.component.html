@@ -27,6 +27,8 @@
   </div>
 <!--</div>-->
 
+<hr>
+
 <div class="row" *ngIf="qanswer.length !== 0">
 
 <div *ngFor="let ans of qanswer">
@@ -94,16 +96,21 @@
 
 <form class="form-horizontal" role="form" [formGroup]="addAnswerForm" (ngSubmit)="AddAnswer()">
   <div class="form-group">
-    <div class="col-xs-6">
+
+    <div class="col-xs-8">
 
       <textarea class="form-control" id="question" placeholder="Add Your Answer" formControlName="answer" rows="3"></textarea>
+
+    </div>
+    <div class="col-xs-4">
 
     </div>
 
   </div>
   <div class="form-group">
-    <div class="col-sm-10 col-sm-offset-2">
-      <button type="submit" class="btn btn-success btn-lg btn-lg glyphicon glyphicon-plus-sign">Add</button>
+    <div class="col-xs-8"></div>
+    <div class="col-xs-4 col-xs-offset-4">
+      <button type="submit" class="btn btn-success btn-lg btn-lg glyphicon glyphicon-plus-sign"> Add</button>
     </div>
   </div>
 </form>

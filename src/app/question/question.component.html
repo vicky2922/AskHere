@@ -11,7 +11,7 @@
 
       <form class="form-horizontal" role="form" [formGroup]="AddQuestionForm" (ngSubmit)="AddQuestion()">
           <div class="form-group">
-              <div class="col-xs-6">
+              <div class="col-xs-11">
 
 
                   <textarea class="form-control" id="question" placeholder="Add Your Question" formControlName="question" (keyup)="checkQuestion()" rows="3"></textarea>
@@ -21,15 +21,15 @@
 
                 <!--<input type="text" class="form-control" id="question" placeholder="Add Your Question" formControlName="question" (keyup)="checkQuestion()">-->
               </div>
-            <div class="col-xs-4 text-left">
+            <!--<div class="col-xs-4 text-left">
               <span class="help-block invalidclass"
                     *ngIf="(!AddQuestionForm.get('question').valid && AddQuestionForm.get('question').touched)">
-            <!--<img src="../../../assets/images/wrong.png" width="25px" height="25px">--> Question shouldn't be empty!
-                <!--<span class="help-block invalidclass" *ngIf="SignUpForm.get('username').errors['isUsernameAvailable']">Username already taken!</span>-->
+            &lt;!&ndash;<img src="../../../assets/images/wrong.png" width="25px" height="25px">&ndash;&gt; Question shouldn't be empty!
+                &lt;!&ndash;<span class="help-block invalidclass" *ngIf="SignUpForm.get('username').errors['isUsernameAvailable']">Username already taken!</span>&ndash;&gt;
             </span>
-            </div>
+            </div>-->
 
-          <div class="col-xs-2 help-block invalidclass" *ngIf="!added">Question is there!!!</div>
+          <!--<div class="col-xs-2 help-block invalidclass" *ngIf="!added">Question is there!!!</div>-->
 
           </div>
 
@@ -37,7 +37,7 @@
 
         <div class="form-group">
           <label for="types" class="control-label col-xs-2">type</label>
-          <div class="col-xs-4">
+          <div class="col-xs-6">
             <input type="text" class="form-control" id="types" formControlName="type" value="{{typeString}}">
           </div>
           <span class="help-block invalidclass"
@@ -60,7 +60,7 @@
 
         <div class="form-group">
           <div class="col-xs-2"></div>
-          <div class="col-xs-4 text-left">
+          <div class="col-xs-8 text-left">
             <input type="button" class="btn btn-default" value="Technical" (click)="addType(1)">
             <input type="button" class="btn btn-default" value="General Knowledge" (click)="addType(2)">
             <input type="button" class="btn btn-default" value="Political" (click)="addType(3)">

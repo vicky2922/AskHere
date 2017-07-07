@@ -5,14 +5,14 @@
 var express = require('express');     //importing express
 var app = express();
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer']);  //db path and collections
+var db = mongojs('mongodb://<14bce013>:<14bce013>@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
 var bodyParser = require('body-parser');
 
 
 /////////////////////////////////////////////////////////
 //Server Running on this port for request
-app.listen(3000);
-console.log("Server is running on 3000");
+app.listen(process.env.PORT || 8080);
+console.log("Server is running on 8080");
 
 //Datbabase Message
 db.on('error', function (err) {
@@ -25,7 +25,7 @@ db.on('connect', function () {
 
 
 //To load index.html at first homepage request
-app.use(express.static("../dist"));
+app.use(express.static(__dirname+"/dist"));
 app.use(bodyParser.json());
 
 
@@ -175,7 +175,7 @@ app.get('/fetchqanswer/:anyvalue',(req,res) => {
 });
 
 
-/*app.get('*', function (req,res){
+app.get('*', function (req,res){
     res.sendFile(__dirname+ '/dist/index.html');
   }
-)*/
+)
