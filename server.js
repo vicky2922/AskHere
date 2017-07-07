@@ -29,6 +29,7 @@ app.use(express.static(__dirname+"/dist"));
 app.use(bodyParser.json());
 
 
+/*
 const forceSSL = function() {
   return function (req, res, next) {
     //console.log("IP is in ssl:" + req.connection.remoteAddress);
@@ -43,6 +44,7 @@ const forceSSL = function() {
 
 app.use(forceSSL());
 
+*/
 
 
 
