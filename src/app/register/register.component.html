@@ -1,0 +1,136 @@
+
+<div class="card">
+<!--<div class="container">-->
+  <div class="backshadow">
+  <h4 class="card-header">Register <i class=" fa fa-user-plus"></i></h4>
+
+<div class="row">
+
+    <form class="form-horizontal" [formGroup]="SignUpForm" (ngSubmit)="signUP()">
+      <div class="form-group">
+
+        <div class="col-xs-6">
+          <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input type="text" class="form-control" id="username" formControlName="username" (keyup)="checkUserName()" placeholder="Username" >
+          </div>
+        </div>
+        <div class="col-xs-2 text-left">
+          <span class="help-block invalidclass"
+                *ngIf="(!SignUpForm.get('username').valid && SignUpForm.get('username').touched)">
+            <i class="fa fa-times" style="color:red;font-size:24px"></i>
+            <!--<img src="../../../assets/images/wrong.png" width="25px" height="25px">--> Username required!
+            <!--<span class="help-block invalidclass" *ngIf="SignUpForm.get('username').errors['isUsernameAvailable']">Username already taken!</span>-->
+          </span>
+          <span class="help-block invalidclass"
+                *ngIf="(SignUpForm.get('username').valid && SignUpForm.get('username').touched)">
+            <!--<i class="fa fa-check-square-o" style="color:green;font-size:24px"></i>-->
+          </span>
+
+        </div>
+
+        <div class="col-xs-4">
+
+          <span class="help-block invalidclass" *ngIf="!availability">Username already taken!
+
+          <i class="fa fa-times" style="color:red;font-size:24px"></i>
+          </span>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <div class="col-xs-6">
+          <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+          <input type="text" class="form-control" id="email" formControlName="email" (keyup)="checkEmail()" placeholder="Email ID">
+
+          </div>
+        </div>
+
+        <div class="col-xs-4 text-left">
+          <span class="help-block invalidclass"
+                *ngIf="(!SignUpForm.get('email').valid && SignUpForm.get('email').touched)">
+            <i class="fa fa-times" style="color:red;font-size:24px"></i>
+             use this form (example@exaple.com)
+          </span>
+          <span class="help-block invalidclass"
+                *ngIf="(SignUpForm.get('email').valid && SignUpForm.get('email').touched)">
+            <i class="fa fa-check-square-o" style="color:green;font-size:24px"></i>
+          </span>
+        </div>
+        <div class="col-xs-2">
+
+          <span class="help-block invalidclass" *ngIf="!availability2">
+            Email Already used!
+          <i class="fa fa-times" style="color:red;font-size:24px"></i>
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <div class="col-xs-6">
+          <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <div class="col-xs-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+            <input type="password" class="form-control" id="cpassword" formControlName="cpassword" placeholder="Confirm Password">
+          </div>
+        </div>
+
+        <div class="col-xs-4 text-left">
+          <span class="help-block invalidclass"
+                *ngIf="(!SignUpForm.get('cpassword').valid && SignUpForm.get('cpassword').touched)">
+                 <i class="fa fa-times" style="color:red;font-size:24px"></i> Enter Same Password As Above!
+          </span>
+          <span class="help-block invalidclass"
+                *ngIf="(SignUpForm.get('cpassword').valid && SignUpForm.get('cpassword').touched)">
+                  <i class="fa fa-check-square-o" style="color:green;font-size:24px"></i>
+          </span>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <div class="col-xs-6">
+          <div class="input-group">
+          <span class="input-group-addon"><i class=" fa fa-child"></i></span>
+          <input type="text" class="form-control" id="firstname" formControlName="firstname" placeholder="Firstname and Lastname">
+
+
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="form-group">
+
+        <div class="col-xs-4 text-left">
+          <button type="submit" class="btn btn-success btn-lg btn-lg glyphicon glyphicon-plus-sign" [disabled]="!SignUpForm.valid"> Register</button>
+        </div>
+        <div class="col-xs-2"></div>
+      </div>
+    </form>
+</div>
+  </div>
+<!--</div>-->
+</div>
+
+

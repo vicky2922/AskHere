@@ -1,0 +1,54 @@
+<div class="card">
+  <!--<div class="container">-->
+    <div class="backshadow">
+    <h4 class="card-header">Enter <i class="fa fa-sign-in"></i></h4>
+
+
+<div class="row">
+  <div class="alert alert-danger alert-dismissable" *ngIf="errormessageflag">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" (click)="errorMessageclose()" >×</a>
+    <strong>Login Failed!<br>Check your username/email or password</strong>
+  </div>
+  <div class="logindiv col-xs-12">
+    <form class="form-horizontal" [formGroup]="LoginForm" (ngSubmit)="Login()">
+      <div class="form-group">
+
+        <div class="col-xs-6">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email id or username"
+                 formControlName="username">
+        </div>
+        <div class="col-xs-4 text-left">
+          <span class="help-block invalidclass"
+                *ngIf="(!LoginForm.get('username').valid && LoginForm.get('username').touched)">
+             Email must be valid!
+          </span>
+
+        </div>
+      </div>
+      <div class="form-group">
+
+        <div class="col-xs-6">
+          <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter password" formControlName="password">
+        </div>
+      </div>
+      <!--<div class="form-group">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-2">
+          <p><a routerLink="/login/forgot">Forgot Password?</a></p>
+        </div>
+      </div>-->
+      <div class="form-group">
+
+        <div class="col-xs-4 text-left">
+          <button type="submit" class="btn btn-success btn-lg glyphicon glyphicon-log-in" [disabled]="!LoginForm.valid"> Login</button>
+        </div>
+        <div class="col-xs-2"></div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+    </div>
+  <!--</div>-->
+</div>

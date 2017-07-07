@@ -1,0 +1,124 @@
+
+<!--<div class="container">-->
+  <div class="backshadowQ">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Que_id:- {{questionid}}</h3>
+      </div>
+
+        <div class="panel-body">
+          <div style="font-size: 24px;color: black;">
+            <b> <i class="fa fa-quora"></i> :- {{thisquestion}}</b>
+          </div>
+        </div>
+
+
+      <div class="panel panel-default">
+        <div class="panel-footer">
+          Type:- {{qtype}}
+        </div>
+        <div class="panel-footer">
+          <h6>Asked By : {{qaskedby}} </h6>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+<!--</div>-->
+
+<div class="row" *ngIf="qanswer.length !== 0">
+
+<div *ngFor="let ans of qanswer">
+
+  <!--<div class="container">-->
+    <div class="backshadowA">
+
+
+
+
+        <div class="panel panel-default">
+        	  <div class="panel-heading">
+        			<h3 class="panel-title">Ans_id:- {{ans._id}}</h3>
+        	  </div>
+        	  <div class="panel-body">
+              <code>
+              <div style="font-size: 20px;">
+                <b> <i class=" fa fa-paper-plane-o" style="color:green"></i> {{ans.answer}}</b>
+              </div>
+              </code>
+        	  </div>
+
+
+          <div class="panel-footer">
+            answered by:- {{ans.askedby}}
+          </div>
+
+        </div>
+
+
+
+
+          <!--<div class="panel-footer">
+            <h6>Asked By : {{que.askedby}} </h6>
+          </div>-->
+          <!--<div class="panel-footer">
+            <button class="btn btn-danger" (click)="removeQuestion(que._id)" [disabled]="removeDisable"> <i class="fa fa-trash-o"></i> Delete</button>
+          </div>-->
+
+
+      </div>
+    <!--</div>-->
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="isLogged; else loginsection">
+  <div class="card">
+    <!--<div class="container">-->
+
+  <div class="backshadow">
+    <h4 class="card-header">
+      Add Answer
+    </h4>
+    <div class="row">
+
+
+<form class="form-horizontal" role="form" [formGroup]="addAnswerForm" (ngSubmit)="AddAnswer()">
+  <div class="form-group">
+    <div class="col-xs-6">
+
+      <textarea class="form-control" id="question" placeholder="Add Your Answer" formControlName="answer" rows="3"></textarea>
+
+    </div>
+
+  </div>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <button type="submit" class="btn btn-success btn-lg btn-lg glyphicon glyphicon-plus-sign">Add</button>
+    </div>
+  </div>
+</form>
+    </div>
+  </div>
+  <!--</div>-->
+  </div>
+</div>
+
+<ng-template #loginsection>
+  <!--<div class="container">-->
+    <div class="backshadow3">
+      <div class="alert alert-danger alert-dismissable">
+        <strong>Please <a routerLink="/enter">Login</a> to add Answer...</strong>
+      </div>
+    </div>
+  <!--</div>-->
+</ng-template>

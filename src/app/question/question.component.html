@@ -1,0 +1,163 @@
+
+<div *ngIf="isLogged; else loginsection">
+
+<div class="card">
+  <!--<div class="container">-->
+    <div class="backshadow">
+    <h4 class="card-header">
+      Add Question
+    </h4>
+    <div class="row">
+
+      <form class="form-horizontal" role="form" [formGroup]="AddQuestionForm" (ngSubmit)="AddQuestion()">
+          <div class="form-group">
+              <div class="col-xs-6">
+
+
+                  <textarea class="form-control" id="question" placeholder="Add Your Question" formControlName="question" (keyup)="checkQuestion()" rows="3"></textarea>
+
+
+
+
+                <!--<input type="text" class="form-control" id="question" placeholder="Add Your Question" formControlName="question" (keyup)="checkQuestion()">-->
+              </div>
+            <div class="col-xs-4 text-left">
+              <span class="help-block invalidclass"
+                    *ngIf="(!AddQuestionForm.get('question').valid && AddQuestionForm.get('question').touched)">
+            <!--<img src="../../../assets/images/wrong.png" width="25px" height="25px">--> Question shouldn't be empty!
+                <!--<span class="help-block invalidclass" *ngIf="SignUpForm.get('username').errors['isUsernameAvailable']">Username already taken!</span>-->
+            </span>
+            </div>
+
+          <div class="col-xs-2 help-block invalidclass" *ngIf="!added">Question is there!!!</div>
+
+          </div>
+
+
+
+        <div class="form-group">
+          <label for="types" class="control-label col-xs-2">type</label>
+          <div class="col-xs-4">
+            <input type="text" class="form-control" id="types" formControlName="type" value="{{typeString}}">
+          </div>
+          <span class="help-block invalidclass"
+                *ngIf="(!AddQuestionForm.get('type').valid && AddQuestionForm.get('type').touched)">
+            <!--<img src="../../../assets/images/wrong.png" width="25px" height="25px">--> Type shouldn't be empty!
+            <!--<span class="help-block invalidclass" *ngIf="SignUpForm.get('username').errors['isUsernameAvailable']">Username already taken!</span>-->
+            </span>
+
+          <div class="col-xs-4 text-left">
+          <span class="help-block invalidclass"
+                *ngIf="!atleastone">
+            <!--< img src="../../../assets/images/wrong.png" width="25px" height="25px">-->Select At least one type!
+          </span>
+            <span class="help-block invalidclass"
+                  *ngIf="atleastone">
+            <!--<img src="../../../assets/images/right.png" width="25px" height="25px">-->
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-2"></div>
+          <div class="col-xs-4 text-left">
+            <input type="button" class="btn btn-default" value="Technical" (click)="addType(1)">
+            <input type="button" class="btn btn-default" value="General Knowledge" (click)="addType(2)">
+            <input type="button" class="btn btn-default" value="Political" (click)="addType(3)">
+            <input type="button" class="btn btn-default" value="Science" (click)="addType(4)">
+            <input type="button" class="btn btn-default" value="Medical" (click)="addType(5)">
+            <input type="button" class="btn btn-default" value="Enterainment" (click)="addType(6)">
+            <input type="button" class="btn btn-default" value="Travelling" (click)="addType(7)">
+            <input type="button" class="btn btn-default" value="Business" (click)="addType(8)">
+          </div>
+        </div>
+
+          <div class="form-group">
+              <div class="col-sm-10 col-sm-offset-2">
+                  <button type="submit" class="btn btn-success btn-lg btn-lg glyphicon glyphicon-plus-sign" [disabled]="!AddQuestionForm.valid">Add</button>
+              </div>
+          </div>
+
+
+      </form>
+
+
+    </div>
+    <!--</div>-->
+  </div>
+
+</div>
+
+<br>
+<hr>
+<br>
+
+
+
+<div class="row" *ngIf="yourquestions.length !== 0">
+
+
+  <div class="col-xs-12">
+      <div class="col-xs-4">
+
+      </div>
+      <div class="col-xs-4">
+        <input class="form-control" placeholder="Type (user id) to remove and Enter" [(ngModel)]="confirm" (keypress)="entered()">
+
+      </div>
+  </div>
+  <br>
+  <br>
+
+
+
+  <div *ngFor="let que of yourquestions; let id = index">
+
+    <!--<div class="container">-->
+      <div class="backshadowQ">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Que_no:- {{id}} <!--{{que._id}}--></h3>
+        </div>
+        <a routerLink="/answer/{{que._id}}" style="text-decoration: none; color: black;">
+          <div class="panel-body">
+            <div style="font-size: 24px;">
+              <b> <i class="fa fa-quora"></i> :- {{que.question}}</b>
+            </div>
+          </div>
+        </a>
+
+        <div class="panel panel-default">
+          <div class="panel-footer">
+            Type:- {{que.type}}
+          </div>
+          <div class="panel-footer">
+            <h6>Asked By : {{que.askedby}} </h6>
+          </div>
+          <div class="panel-footer">
+          <button class="btn btn-danger" (click)="removeQuestion(que._id)" [disabled]="removeDisable"> <i class="fa fa-trash-o"></i> Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+<!--</div>-->
+
+</div>
+<!--If condition over-->
+
+<ng-template #loginsection>
+  <!--<div class="container">-->
+    <div class="backshadow3">
+      <div class="alert alert-danger alert-dismissable">
+        <strong>Please <a routerLink="/enter">Login</a> to add Your Questions..</strong>
+      </div>
+    </div>
+ <!-- </div>-->
+
+</ng-template>
+
