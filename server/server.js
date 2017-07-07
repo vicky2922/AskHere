@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 
 /////////////////////////////////////////////////////////
 //Server Running on this port for request
-app.listen(3000 || process.env.PORT);
+app.listen(process.env.PORT || 8080);
 console.log("Server is running on 3000");
 
 //Datbabase Message
