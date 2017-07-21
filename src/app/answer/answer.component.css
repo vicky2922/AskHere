@@ -1,4 +1,4 @@
-backshadowQ{
+.backshadowQ{
   border: 0.5px solid gray;
   box-shadow: 0.5px 0.5px 5px 5px lightgray;
   margin: 10px;
@@ -6,7 +6,7 @@ backshadowQ{
   border-radius:0px;
 }
 
-backshadowA{
+.backshadowA{
   border: 0.5px solid gray;
   box-shadow: 0.5px 0.5px 5px 5px lightgray;
   margin: 10px;
@@ -14,7 +14,7 @@ backshadowA{
   border-radius:0px;
 }
 
-backshadowBox{
+.backshadowBox{
   border: 0.5px solid gray;
   box-shadow: 0.5px 0.5px 10px 5px lightgray;
   margin: 10px;

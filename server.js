@@ -6,6 +6,7 @@ var express = require('express');     //importing express
 var app = express();
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
+//var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer']);  //db path and collections
 var bodyParser = require('body-parser');
 
 
@@ -191,7 +192,9 @@ app.get('/fetchqanswer/:anyvalue',(req,res) => {
 });
 
 
+/*
 app.get('*', function (req,res){
     res.sendFile(__dirname+ '/dist/index.html');
   }
 )
+*/

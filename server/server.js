@@ -175,7 +175,7 @@ app.get('/fetchqanswer/:anyvalue',(req,res) => {
 });
 
 
-/*app.get('*', function (req,res){
-    res.sendFile(__dirname+ '/dist/index.html');
+app.get('*', function (req,res){
+    res.sendFile('D:/Summer Training/projectquora/dist/index.html');
   }
-)*/
+)
