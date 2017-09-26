@@ -2,32 +2,22 @@
 
   <div *ngFor="let que of questions; let i = index">
 
-    <!--<div class="container">-->
-      <div class="backshadow">
-      <div class="panel panel-info">
-        <!--<div class="panel-heading">
-          <h3 class="panel-title">Que_no:- &lt;!&ndash;{{i+143}}&ndash;&gt;{{que._id}}</h3>
-        </div>-->
-        <a routerLink="/answer/{{que._id}}" style="text-decoration: none;color:black;">
-        <div class="panel-body">
-          <div style="font-size: 24px;">
-          <b><i class="fa fa-quora"></i> :- {{que.question}}</b>
-          </div>
-        </div>
-        </a>
 
-        <div class="panel panel-default">
-          <div class="panel-footer">
-            Type:- {{que.type}}
-          </div>
-          <div class="panel-footer">
-            <h6>Asked By : {{que.askedby}} </h6>
-          </div>
-        </div>
+    <div class="card">
 
-      <!--</div>-->
+      <a routerLink="/answer/{{que._id}}" style="text-decoration: none;color:black;">
+      <h3 class="card-header">{{que.question}}</h3>
+      </a>
+      <!--<div class="card-block">
+        <h4 class="card-title">Special title treatment</h4>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>-->
+      <h6>Type ᛫ {{que.type}} | Asked By ᛫ {{que.askedby}} </h6>
+      <hr>
     </div>
-    </div>
+
+
   </div>
 
 </div>

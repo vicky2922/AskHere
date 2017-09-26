@@ -17,7 +17,7 @@ export class LoginserviceService {
   }>();
 
   statusUpdated = new EventEmitter<{ _id:string, username: string, email: string, flag: boolean }>();
-
+  adminstatus = new EventEmitter<{ flag: boolean }>();
   callbackforlogin = new EventEmitter<string>();
 
 
@@ -73,6 +73,7 @@ export class LoginserviceService {
     this.emailLogged = 'NoEmailLoggedIn';
     this._idLogged = 'none';
     this.statusUpdated.emit({_id: 'NotID',username: 'NotLoggedIn', email: 'NoEmailLoggedIn', flag: false});
+    this.adminstatus.emit({flag:false});
 
   }
 }

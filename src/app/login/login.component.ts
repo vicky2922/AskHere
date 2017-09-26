@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private loginservice: ServerserviceService, private logindataservice: LoginserviceService, private route: Router) { }
+  constructor(private serverservice: ServerserviceService, private logindataservice: LoginserviceService, private route: Router) { }
 
 
 
@@ -38,18 +38,37 @@ export class LoginComponent implements OnInit {
 
     var privateUser = new LoginObject(this.LoginForm.get('username').value,this.LoginForm.get('password').value);
 
-    this.loginservice.canLogin(privateUser).subscribe(
+    this.serverservice.canLogin(privateUser).subscribe(
 
 
 
       LoginData => {
         if((LoginData.username === privateUser.username || LoginData.email === privateUser.username)&& LoginData.password === privateUser.password ) {
+
+          this.logindataservice.statusUpdated.emit({
+            _id: LoginData._id,
+            username: LoginData.username,
+            email: LoginData.email,
+            flag: true
+          });
+
+
+
           this.logindataservice.setisLogged(); //Creating session
           this.logindataservice.setuserLogged(LoginData.username);
           this.logindataservice.setemailLogged(LoginData.email);
           this.logindataservice.setid(LoginData._id);
           this.logindataservice.setfirstname(LoginData.firstname);
 
+          if(LoginData.username === '14bce013' || LoginData.username === '14bce058'){
+            this.logindataservice.adminstatus.emit({flag:true});
+          }
+          else{
+            this.logindataservice.adminstatus.emit({flag:false});
+          }
+
+
+        /*
           this.logindataservice.statusUpdated.emit({_id: LoginData._id,username: LoginData.username,email: LoginData.email,flag:true});
 
           this.logindataservice.userObjectLoggedIn.emit(
@@ -61,7 +80,7 @@ export class LoginComponent implements OnInit {
             });
 
           console.log(new UserObjectALL(LoginData._id,LoginData.username,LoginData.email,LoginData.password,LoginData.firstname));
-
+*/
           this.route.navigate(['/']);
 
         }

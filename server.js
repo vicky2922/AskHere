@@ -4,16 +4,32 @@
 
 var express = require('express');     //importing express
 var app = express();
+var cors = require('cors')
+const path = require('path')
 var mongojs = require('mongojs');
+
 var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
 //var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer']);  //db path and collections
 var bodyParser = require('body-parser');
 
+var ipfind = require('ip')
+
+app.use(express.static(__dirname + '/dist'))
+app.use(bodyParser.json())
+app.use(cors())
 
 /////////////////////////////////////////////////////////
 //Server Running on this port for request
 app.listen(process.env.PORT || 8080);
 console.log("Server is running on 8080");
+
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*")
+  res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE')
+  res.header('Access-Control-Allow-Headers', 'Content-Type')
+  next()
+})
 
 //Datbabase Message
 db.on('error', function (err) {
@@ -91,7 +107,7 @@ app.delete('/deleteuser/:anyvalue',(req,res) => {
 });
 
 //Login Process
-app.post('/userLogin',(req,res) => {
+/*app.post('/userLogin',(req,res) => {
   console.log("Request For:-Login Attempt.");
 db.userdata.findOne({$or: [{email:req.body.username},{username:req.body.username}],password: req.body.password }, (err, user) => {
   if( err || !user)
@@ -104,7 +120,74 @@ else
 }
 });
 
-});
+});*/
+
+
+//Login Process
+app.post('/userLogin', (req, res) => {
+  console.log("Request For:-Login Attempt.")
+db.userdata.findOne({
+  $or: [{
+    email: req.body.username
+  }, {
+    username: req.body.username
+  }],
+  password: req.body.password
+}, (err, user) => {
+  if (err || !user) {
+  res.json({
+    username: 'Not Found!',
+    email: 'Not Found!',
+    password: 'Not Found!'
+  })
+} else {
+  db.session.insert({
+    clientIP: ipfind.address() + '',
+    data: user
+  }) //session stuff
+  res.json(user)
+}
+})
+
+})
+
+//Get Logged in Session
+app.get('/getsession', (req, res) => {
+  console.log("Request For:-All Session")
+//console.log(ipfind.address())
+db.session.find({}, (err, doc) => {
+  res.json(doc)
+})
+})
+
+app.get('/getip', (req, res) => {
+  console.log("Request For:-IP")
+//console.log(ipfind.address())
+res.json({
+  client: ipfind.address()
+})
+})
+
+
+
+//delete session
+app.delete('/deletesession/:anuvalue', (req, res) => {
+  console.log("Request For:-Login Session delete.")
+db.session.remove({
+  clientIP: ipfind.address()
+}, (err, doc) => {
+  if (err || !doc) {
+  res.json({
+    flag: false
+  })
+} else {
+  res.json({
+    flag: true
+  })
+}
+})
+})
+
 
 //Returning all user for admin use
 app.get('/adminreqforuser',(req,res)=>{
@@ -136,13 +219,23 @@ app.get('/questioncheck/:anyvalue',(req,res) => {
 });
 
 
-//Add question to db
+//Add question to db in admin part from user
 app.post('/addquestion',(req,res)=>{
   console.log("Request for :- Add new Question");
-  db.question.insert(req.body,(err,doc) => {
+  db.adminquestion.insert(req.body,(err,doc) => {
     res.json({serverMessage:"Question Added..."});
   });
 });
+
+
+//Add question to db from admin part to user
+app.post('/addquestiontoweb',(req,res)=>{
+  console.log("Request for :- Add new Question");
+db.question.insert(req.body,(err,doc) => {
+  res.json({serverMessage:"Question Added..."});
+});
+});
+
 
 
 //Retrieve all Question

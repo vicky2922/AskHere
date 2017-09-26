@@ -33,6 +33,20 @@ export class ServerserviceService {
     return this.http.post('/userLogin', loginObject).map(res => res.json());
   }
 
+
+  getSession(){
+    return this.http.get('/getsession').map(res => res.json());
+    //return this.http.get('/getsession').map(res => res.json());
+  }
+
+  getIP(){
+    return this.http.get('/getip').map(res => res.json());
+  }
+  deleteSession(id:string){
+    return this.http.delete('/deletesession/'+id).map(res => res.json());
+  }
+
+
   //To check if Question is alredy asked or not
   canTakeQuestion(value: string) {
     return this.http.get('/questioncheck/' + value).map(res => res.json());

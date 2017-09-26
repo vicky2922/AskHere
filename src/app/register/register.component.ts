@@ -80,6 +80,7 @@ export class RegisterComponent implements OnInit {
       this.SignUpForm.get('firstname').value);
 
     console.log(newUser);
+
     this.newUserService.addNewUser(newUser).subscribe(
       data => {
         this.onSuccess = true;
@@ -94,7 +95,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-
+/*
     var privateUser = new LoginObject(this.SignUpForm.get('username').value,this.SignUpForm.get('password').value);
 
     this.newUserService.canLogin(privateUser).subscribe(
@@ -136,7 +137,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-    );
+    );*/
 
 
 
