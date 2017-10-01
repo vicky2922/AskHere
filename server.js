@@ -8,8 +8,8 @@ var cors = require('cors')
 const path = require('path')
 var mongojs = require('mongojs');
 
-//var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
-var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
+var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
+//var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
 var bodyParser = require('body-parser');
 
 var ipfind = require('ip')
