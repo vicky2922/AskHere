@@ -8,8 +8,8 @@ var cors = require('cors')
 const path = require('path')
 var mongojs = require('mongojs');
 
-var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
-//var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer']);  //db path and collections
+//var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
+var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
 var bodyParser = require('body-parser');
 
 var ipfind = require('ip')
@@ -246,6 +246,15 @@ db.question.find({},(err,doc) => {
 });
 });
 
+
+//Retrieve aadmin Question
+app.get('/fetchadminquestion',(req,res) => {
+  console.log("Request For:-All Question by user.");
+db.adminquestion.find({},(err,doc) => {
+  res.json(doc);
+});
+});
+
 //Retrieve your question
 app.get('/fetchyourquestion/:anyvalue',(req,res) => {
   db.question.find({askedby: req.param('anyvalue')},(err, doc) => {
@@ -268,6 +277,14 @@ app.get('/fetchthisquestion/:anyvalue', (req,res) => {
 });
 
 
+//fetch question detail for admin side
+app.get('/fetchthisquestionforadmin/:anyvalue', (req,res) => {
+  db.adminquestion.findOne({_id: mongojs.ObjectID(req.param('anyvalue'))}, (err, doc) => {
+  res.json(doc);
+});
+});
+
+
 //Add answer to db
 app.post('/addanswer',(req,res)=>{
   console.log("Request for :- Add new Answer");
@@ -283,6 +300,23 @@ app.get('/fetchqanswer/:anyvalue',(req,res) => {
     res.json(doc);
 });
 });
+
+//Retrive related question to admin side from db by question title
+
+app.get('/fetchrelatedquestions/:anyvalue',(req,res) => {
+
+  console.log("Request For:-related questions")
+  db.question.find({
+
+      $text:{
+        $search : req.param('anyvalue')
+      }
+
+  }, (err,doc) => {
+  res.json(doc);
+});
+});
+
 
 
 /*

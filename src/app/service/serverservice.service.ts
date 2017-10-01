@@ -62,6 +62,11 @@ export class ServerserviceService {
     return this.http.get('/fetchallquestion').map(res => res.json());
   }
 
+  //Retrieve all Question from admin table database
+  adminQuestionFetch(){
+    return this.http.get('/fetchadminquestion').map(res => res.json());
+  }
+
   //Retrieve question for perticular user id
   yourQuestionFetch(value: string){
     return this.http.get('/fetchyourquestion/' + value).map(res => res.json());
@@ -77,6 +82,11 @@ export class ServerserviceService {
     return this.http.get('/fetchthisquestion/'+value).map(res => res.json());
   }
 
+  //fetch question detail for admin
+  fetchquestiondetailforadmin(value: string){
+    return this.http.get('/fetchthisquestionforadmin/'+value).map(res => res.json());
+  }
+
   //Add Answer to db
   addAnswer(answerObject: AnswerObject){
     return this.http.post('/addanswer', answerObject).map(res => res.json());
@@ -85,6 +95,10 @@ export class ServerserviceService {
   //Retrieve Answer for perticular question from db
   AnswerofQuestion(value: string){
     return this.http.get('/fetchqanswer/'+value).map(res => res.json());
+  }
+//Related question retrival at admn side for perticular question from db
+  RelatedQuestion(value: string){
+    return this.http.get('/fetchrelatedquestions/'+value).map(res => res.json());
   }
 
 

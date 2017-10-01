@@ -20,6 +20,8 @@ import {QuestionService} from "./service/questionservice.service";
 import {ServerserviceService} from "./service/serverservice.service";
 import { AnswerComponent } from './answer/answer.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AdminComponent } from './admin/admin.component';
+import { RelatedqueComponent } from './relatedque/relatedque.component';
 
 
 
@@ -37,7 +39,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     QuestionComponent,
     OnlyquestionComponent,
     AnswerComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AdminComponent,
+    RelatedqueComponent
   ],
   imports: [
     BrowserModule,

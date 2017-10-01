@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
+  percentage:string = '40%';
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  getpercentage(){
+    return this.percentage;
+  }
 }

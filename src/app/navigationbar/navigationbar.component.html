@@ -2,12 +2,12 @@
 
 
 
-<nav class="navbar">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <h2>AskHere</h2>
+      <h2 class="navbar-brand">AskHere</h2>
     </div>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
       <li routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">Home <i class="fa fa-home"></i></a></li>
@@ -48,11 +48,11 @@
       </div>-->
 
       <div class="dropdown navbar-right">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true" style="font-size: 20px;"></i>&nbsp;{{userLogged}}
           <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li><a routerLink="/user/profile/{{_id}}"><i class="fa fa-user" aria-hidden="true"
+          <li><a routerLink="/userprofile/{{userID}}"><i class="fa fa-user" aria-hidden="true"
                                                        style="font-size: 20px;"></i>&nbsp;Profile</a>
           </li>
           <li><a routerLink="/user/changepassword"><i class="fa fa-key" aria-hidden="true" style="font-size: 20px;"></i>&nbsp;Change
@@ -60,7 +60,7 @@
           <li><a (click)="LogOut()" routerLink=""><i class="fa fa-sign-out" aria-hidden="true"
                                                      style="font-size: 20px;"></i>&nbsp;Log Out</a></li>
           <li class="divider"></li>
-          <li *ngIf="adminsetting"><a routerLink="/user/admin/addmovie"><i class="fa fa-database" aria-hidden="true"
+          <li *ngIf="adminsetting"><a routerLink="/admin"><i class="fa fa-database" aria-hidden="true"
                                                                            style="font-size: 20px;"></i>&nbsp;Admin
             Options</a></li>
           <!--<li><a (click)="DeleteUser()" routerLink=""><i class="fa fa-trash-o" aria-hidden="true"

@@ -11,6 +11,9 @@ import {HomeComponent} from "./home/home.component";
 import { QuestionComponent } from './question/question.component';
 import { OnlyquestionComponent } from './question/onlyquestion/onlyquestion.component';
 import {AnswerComponent} from "./answer/answer.component";
+import {AdminComponent} from "./admin/admin.component";
+import {RelatedqueComponent} from "./relatedque/relatedque.component";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 
 
@@ -22,6 +25,11 @@ const appRoutes: Routes = [
   { path: 'not-found', component: PageNotFoundComponent},
   { path: 'question', component: QuestionComponent},
   {path: 'answer/:id', component: AnswerComponent},
+
+  {path:'userprofile/:id', component:UserProfileComponent},
+  {path:'admin', component:AdminComponent},
+  {path: 'relatedquestions/:id', component:RelatedqueComponent},
+
 
   { path: '**', redirectTo: '/not-found'}
 

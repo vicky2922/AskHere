@@ -43,11 +43,13 @@ export class AnswerComponent implements OnInit {
       'answer' : new FormControl(null, [Validators.required])
     });
 
+
   }
 
 
 
   ngOnInit() {
+
 
     this.loginservice.statusUpdated.subscribe(
       object => {
@@ -59,7 +61,6 @@ export class AnswerComponent implements OnInit {
 
       }
     );
-
     this.fetchquestiondetail();
 
     this.refreshyouranswer();
@@ -72,12 +73,13 @@ export class AnswerComponent implements OnInit {
     this.loginservice.callbackforlogin.emit('sent data...');
 
     this.serverservice.fetchquestiondetailforanswer(this.questionid).subscribe(
-      data => {
-        this.thisquestion = data.question;
-        this.qaskedby = data.askedby;
-        this.qtype = data.type;
 
-       // alert(this.thisquestion+this.qaskedby+this.qtype );
+      data2 => {
+        this.thisquestion = data2.question;
+        this.qaskedby = data2.askedby;
+        this.qtype = data2.type;
+
+    //   alert(this.thisquestion+this.qaskedby+this.qtype );
 
       },
       error => {
@@ -121,7 +123,7 @@ export class AnswerComponent implements OnInit {
   refreshyouranswer() {
 
     this.loginservice.callbackforlogin.emit('sent data...');
-  // alert(this.questionid);
+   //alert(this.questionid);
     this.serverservice.AnswerofQuestion(this.questionid).subscribe(
       data => {
         this.qanswer = data;
