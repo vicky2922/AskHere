@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {LoginserviceService} from "../service/loginservice.service";
 import {ServerserviceService} from "../service/serverservice.service";
+import {QuestionObject} from "../Objects/questionobject";
 
 @Component({
   selector: 'app-relatedque',
@@ -20,14 +21,14 @@ export class RelatedqueComponent implements OnInit {
   qaskedby:string;
   qtype:string;
 
-
+  questionObject: QuestionObject;
 
   relatedq = [];
 
   afterAddMessageflag:boolean = false; //after submission message
 
 
-  constructor(private route : ActivatedRoute , private loginservice : LoginserviceService, private serverservice : ServerserviceService) {
+  constructor(private route2 : Router,private route : ActivatedRoute , private loginservice : LoginserviceService, private serverservice : ServerserviceService) {
     route.params.subscribe(
       (idd: Params) => {
         this.questionid = idd['id'];
@@ -95,6 +96,47 @@ export class RelatedqueComponent implements OnInit {
         alert('server respond with '+error);
       },
     );
+  }
+
+
+  AddQuestiontoWeb(){
+
+    this.questionObject = new QuestionObject(
+      this.thisquestion,
+      this.qaskedby,
+      this.qtype
+
+    );
+
+
+    this.serverservice.addQuestionToWeb(this.questionObject).subscribe(
+      data => {
+        alert("server respond : " + data.serverMessage);
+        this.afterAddMessageflag = true;
+        this.RemoveQuestion();
+      },
+      error => {
+        alert("server respond with" + error);
+      }
+    );
+
+  }
+
+
+
+  //Delete Question by user...
+  RemoveQuestion(){
+    this.serverservice.DeleteQuestionByAdmin(this.questionid).subscribe(
+      data => {
+        alert('server response : ' + data.serverMessage);
+       // this.refreshyourquestion();
+      },
+      error => {
+        alert('server response : ' + error);
+      }
+
+    );
+    this.route2.navigate(['admin']);
   }
 
 

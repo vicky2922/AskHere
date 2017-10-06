@@ -113,34 +113,19 @@
 
   <div *ngFor="let que of yourquestions; let id = index">
 
-    <!--<div class="container">-->
-      <div class="backshadowQ">
-      <div class="panel panel-info">
-       <!-- <div class="panel-heading">
-          <h3 class="panel-title">Que_no:- {{id}} &lt;!&ndash;{{que._id}}&ndash;&gt;</h3>
-        </div>-->
-        <a routerLink="/answer/{{que._id}}" style="text-decoration: none; color: black;">
-          <div class="panel-body">
-            <div style="font-size: 24px;">
-              <b> <i class="fa fa-quora"></i> :- {{que.question}}</b>
-            </div>
-          </div>
-        </a>
 
-        <div class="panel panel-default">
-          <div class="panel-footer">
-            Type:- {{que.type}}
-          </div>
-          <div class="panel-footer">
-            <h6>Asked By : {{que.askedby}} </h6>
-          </div>
-          <div class="panel-footer">
-          <button class="btn btn-danger" (click)="removeQuestion(que._id)" [disabled]="removeDisable"> <i class="fa fa-trash-o"></i> Delete</button>
-          </div>
-        </div>
 
-      </div>
+    <div class="card">
+
+      <a style="text-decoration: none;color:black;" routerLink="/answer/{{que._id}}">
+        <h3 class="card-header">{{que.question}}</h3>
+      </a>
+
+      <h6>Type ᛫ {{que.type}} | Asked By ᛫ {{que.askedby}} </h6>
+      <button class="btn btn-danger" (click)="removeQuestion(que._id)" [disabled]="removeDisable"> <i class="fa fa-trash-o"></i> Delete</button>
+      <hr>
     </div>
+
   </div>
   </div>
 

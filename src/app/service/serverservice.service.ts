@@ -52,9 +52,19 @@ export class ServerserviceService {
     return this.http.get('/questioncheck/' + value).map(res => res.json());
   }
 
-  //To add Question in database
+  //To add Question in database to admin side
   addQuestion(questionObject: QuestionObject){
     return this.http.post('/addquestion', questionObject).map(res => res.json());
+  }
+
+  //Delete Question by admin
+  DeleteQuestionByAdmin(value: string){
+    return this.http.delete('/deletequestionbyadmin/'+ value).map(res => res.json());
+  }
+
+  //To add Question in database to web
+  addQuestionToWeb(questionObject: QuestionObject){
+    return this.http.post('/addquestiontoweb', questionObject).map(res => res.json());
   }
 
   //Retrieve all Question from database

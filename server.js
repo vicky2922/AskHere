@@ -8,7 +8,7 @@ var cors = require('cors')
 const path = require('path')
 var mongojs = require('mongojs');
 
-var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer']);  //db path and collections
+var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
 //var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
 var bodyParser = require('body-parser');
 
@@ -223,7 +223,7 @@ app.get('/questioncheck/:anyvalue',(req,res) => {
 app.post('/addquestion',(req,res)=>{
   console.log("Request for :- Add new Question");
   db.adminquestion.insert(req.body,(err,doc) => {
-    res.json({serverMessage:"Question Added..."});
+    res.json({serverMessage:"Question Added to admin side"});
   });
 });
 
@@ -232,7 +232,7 @@ app.post('/addquestion',(req,res)=>{
 app.post('/addquestiontoweb',(req,res)=>{
   console.log("Request for :- Add new Question");
 db.question.insert(req.body,(err,doc) => {
-  res.json({serverMessage:"Question Added..."});
+  res.json({serverMessage:"Question Added to web"});
 });
 });
 
@@ -247,7 +247,7 @@ db.question.find({},(err,doc) => {
 });
 
 
-//Retrieve aadmin Question
+//Retrieve admin Question
 app.get('/fetchadminquestion',(req,res) => {
   console.log("Request For:-All Question by user.");
 db.adminquestion.find({},(err,doc) => {
@@ -260,6 +260,13 @@ app.get('/fetchyourquestion/:anyvalue',(req,res) => {
   db.question.find({askedby: req.param('anyvalue')},(err, doc) => {
   res.json(doc);
 });
+});
+
+//delete question by admin
+app.delete('/deletequestionbyadmin/:anyvalue', (req,res) => {
+  db.adminquestion.remove({_id:mongojs.ObjectID(req.param('anyvalue'))},(err,doc) => {
+  res.json({serverMessage:'Question Deleted at admin side!'});
+})
 });
 
 //delete question by user

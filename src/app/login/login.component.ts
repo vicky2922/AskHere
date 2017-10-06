@@ -62,9 +62,11 @@ export class LoginComponent implements OnInit {
 
           if(LoginData.username === '14bce013' || LoginData.username === '14bce058'){
             this.logindataservice.adminstatus.emit({flag:true});
+            this.route.navigate(['admin']);
           }
           else{
             this.logindataservice.adminstatus.emit({flag:false});
+            this.route.navigate(['/']);
           }
 
 
@@ -81,7 +83,7 @@ export class LoginComponent implements OnInit {
 
           console.log(new UserObjectALL(LoginData._id,LoginData.username,LoginData.email,LoginData.password,LoginData.firstname));
 */
-          this.route.navigate(['/']);
+
 
         }
         else{

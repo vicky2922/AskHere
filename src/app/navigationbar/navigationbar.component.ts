@@ -99,6 +99,7 @@ export class NavigationbarComponent implements OnInit {
 
               if (one.data.username === '14bce013' || one.data.username === '14bce058') {
                 this.LoginDataService.adminstatus.emit({flag: true});
+
               }
               else {
                 this.LoginDataService.adminstatus.emit({flag: false});

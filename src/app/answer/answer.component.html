@@ -1,84 +1,40 @@
 
-<!--<div class="container">-->
-  <div class="backshadowQ">
-    <div class="panel panel-info">
-      <!--<div class="panel-heading">
-        <h3 class="panel-title">Que_id:- {{questionid}}</h3>
-      </div>-->
+<div class="card">
 
-        <div class="panel-body">
-          <div style="font-size: 24px;color: black;">
-            <b> <i class="fa fa-quora"></i> :- {{thisquestion}}</b>
-          </div>
-        </div>
+  <a style="text-decoration: none;color:black;">
+    <h3 class="card-header">{{thisquestion}}</h3>
+  </a>
 
+  <h6>Type ᛫ {{qtype}} | Asked By ᛫ {{qaskedby}} </h6>
+  <hr>
+</div>
 
-      <div class="panel panel-default">
-        <div class="panel-footer">
-          Type:- {{qtype}}
-        </div>
-        <div class="panel-footer">
-          <h6>Asked By : {{qaskedby}} </h6>
-        </div>
+<fieldset>
 
-      </div>
+  <div class="card" *ngIf="qanswer.length !== 0;else othersection">
+    <legend>Answers</legend>
 
+    <div *ngFor="let ans of qanswer">
+
+      <a style="text-decoration: none;color:black">
+        <div class="card-header"><pre>{{ans.answer}}</pre></div>
+      </a>
+
+      <h6> Answered By ᛫ {{ans.askedby}} </h6>
+      <hr>
     </div>
   </div>
-<!--</div>-->
-
-<hr>
-
-<div class="row" *ngIf="qanswer.length !== 0">
-<div class="backshadowBox">
-
-<div *ngFor="let ans of qanswer">
-
-  <!--<div class="container">-->
-    <div class="backshadowA">
-
-
-
-
-        <div class="panel panel-default">
-        	  <!--<div class="panel-heading">
-        			<h3 class="panel-title">Ans_id:- {{ans._id}}</h3>
-        	  </div>-->
-        	  <div class="panel-body">
-              <code>
-              <div style="font-size: 20px;">
-                <b> <i class=" fa fa-paper-plane-o" style="color:green"></i> {{ans.answer}}</b>
-              </div>
-              </code>
-        	  </div>
-
-
-          <div class="panel-footer">
-            answered by:- {{ans.askedby}}
-          </div>
-
-        </div>
-
-
-
-
-          <!--<div class="panel-footer">
-            <h6>Asked By : {{que.askedby}} </h6>
-          </div>-->
-          <!--<div class="panel-footer">
-            <button class="btn btn-danger" (click)="removeQuestion(que._id)" [disabled]="removeDisable"> <i class="fa fa-trash-o"></i> Delete</button>
-          </div>-->
-
-
-      </div>
-    <!--</div>-->
-  </div>
-</div>
-</div>
-
-
-
-
+  <ng-template #othersection>
+    <div class="panel panel-success">
+    	  <div class="panel-heading">
+    			<h3 class="panel-title">No answers yet..</h3>
+    	  </div>
+    	  <div class="panel-body">
+    			Add your answer
+    	  </div>
+    </div>
+  </ng-template>
+</fieldset>
 
 
 
@@ -94,6 +50,10 @@
       Add Answer
     </h4>
     <div class="row">
+
+
+
+
 
 
 <form class="form-horizontal" role="form" [formGroup]="addAnswerForm" (ngSubmit)="AddAnswer()">

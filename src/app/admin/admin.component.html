@@ -1,4 +1,4 @@
-<div class="row" *ngIf="questions.length !== 0">
+<div class="row" *ngIf="questions.length !== 0;else othersection">
 
   <div *ngFor="let que of questions; let i = index">
 
@@ -8,11 +8,11 @@
       <a routerLink="/relatedquestions/{{que._id}}" style="text-decoration: none;color:black;">
         <h3 class="card-header">{{que.question}}</h3>
       </a>
-      <div class="card-block">
+      <!--<div class="card-block">
         <a href="#" class="btn btn-default">Add To WEB</a>
         <a href="#" class="btn btn-default">EDIT</a>
         <a href="#" class="btn btn-default">REMOVE</a>
-      </div>
+      </div>-->
       <h6>Type ᛫ {{que.type}} | Asked By ᛫ {{que.askedby}} </h6>
       <hr>
     </div>
@@ -21,4 +21,15 @@
   </div>
 
 </div>
+<ng-template #othersection>
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Questions for admin part are empty...</h3>
+    </div>
+    <div class="panel-body">
+      You are free now...
+    </div>
+  </div>
+
+</ng-template>
 

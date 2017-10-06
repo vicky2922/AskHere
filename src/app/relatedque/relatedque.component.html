@@ -8,9 +8,9 @@
     <h3 class="card-header">{{thisquestion}}</h3>
   </a>
   <div class="card-block">
-    <a href="#" class="btn btn-default">Add To WEB</a>
+    <a (click)="AddQuestiontoWeb()" class="btn btn-default">Add To WEB</a>
     <a href="#" class="btn btn-default">EDIT</a>
-    <a href="#" class="btn btn-default">REMOVE</a>
+    <a (click)="RemoveQuestion()" class="btn btn-default">REMOVE</a>
   </div>
   <h6>Type ᛫ {{qtype}} | Asked By ᛫ {{qaskedby}} </h6>
   <hr>
