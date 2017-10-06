@@ -86,8 +86,8 @@ export class RegisterComponent implements OnInit {
         this.onSuccess = true;
         console.log("On Successful Insertion of "+ data.email);
            //all field only will be reset if data successfully inserted
-
-       // this.route.navigate(['/']);
+        this.SignUpForm.reset();
+        this.route.navigate(['enter']);
       },
       err => console.log(err),
       () => console.log("Completed")
