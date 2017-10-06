@@ -21,7 +21,7 @@
 <legend>Related Questions</legend>
 
 
-<div class="card" *ngIf="relatedq.length !== 0">
+<div class="card" *ngIf="relatedq.length !== 0;else othersection">
 
   <div *ngFor="let rq of relatedq">
 
@@ -33,7 +33,16 @@
   <hr>
 </div>
 </div>
+  <ng-template #othersection>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">There is no related question...</h3>
+      </div>
+
+    </div>
+  </ng-template>
 </fieldset>
+
 
 
 <!--
