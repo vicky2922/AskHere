@@ -103,8 +103,8 @@ export class RelatedqueComponent implements OnInit {
 
     this.questionObject = new QuestionObject(
       this.thisquestion,
-      this.qaskedby,
-      this.qtype
+      this.qtype,
+      this.qaskedby
 
     );
 
