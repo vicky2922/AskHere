@@ -1,35 +1,60 @@
-<div class="row" *ngIf="questions.length !== 0;else othersection">
-
-  <div *ngFor="let que of questions; let i = index">
 
 
-    <div class="card">
+<!-- TAB NAVIGATION -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Questions</a></li>
+  <li><a href="#tab2" role="tab" data-toggle="tab">Answers</a></li>
+  <li><a href="#tab3" role="tab" data-toggle="tab">Comments</a></li>
+</ul>
+<!-- TAB CONTENT -->
+<div class="tab-content">
+  <div class="active tab-pane fade in" id="tab1">
+    <h2>Questions</h2>
 
-      <a routerLink="/relatedquestions/{{que._id}}" style="text-decoration: none;color:black;">
-        <h3 class="card-header">{{que.question}}</h3>
-      </a>
-      <!--<div class="card-block">
-        <a href="#" class="btn btn-default">Add To WEB</a>
-        <a href="#" class="btn btn-default">EDIT</a>
-        <a href="#" class="btn btn-default">REMOVE</a>
-      </div>-->
-      <h6>Type ᛫ {{que.type}} | Asked By ᛫ {{que.askedby}} </h6>
-      <hr>
+    <div class="row" *ngIf="questions.length !== 0;else othersection">
+
+      <div *ngFor="let que of questions; let i = index">
+
+
+        <div class="card">
+
+          <a routerLink="/relatedquestions/{{que._id}}" style="text-decoration: none;color:black;">
+            <h3 class="card-header">{{que.question}}</h3>
+          </a>
+          <!--<div class="card-block">
+            <a href="#" class="btn btn-default">Add To WEB</a>
+            <a href="#" class="btn btn-default">EDIT</a>
+            <a href="#" class="btn btn-default">REMOVE</a>
+          </div>-->
+          <h6>Type ᛫ {{que.type}} | Asked By ᛫ {{que.askedby}} </h6>
+          <hr>
+        </div>
+
+
+      </div>
+
     </div>
+    <ng-template #othersection>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Questions for admin part are empty...</h3>
+        </div>
+        <div class="panel-body">
+          You are free now...
+        </div>
+      </div>
+
+    </ng-template>
 
 
   </div>
-
+  <div class="tab-pane fade" id="tab2">
+    <h2>Tab2</h2>
+    <p>Lorem ipsum.</p>
+  </div>
+  <div class="tab-pane fade" id="tab3">
+    <h2>Tab3</h2>
+    <p>Lorem ipsum.</p>
+  </div>
 </div>
-<ng-template #othersection>
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h3 class="panel-title">Questions for admin part are empty...</h3>
-    </div>
-    <div class="panel-body">
-      You are free now...
-    </div>
-  </div>
-
-</ng-template>
 

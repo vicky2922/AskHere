@@ -29,9 +29,6 @@
     	  <div class="panel-heading">
     			<h3 class="panel-title">No answers yet..</h3>
     	  </div>
-    	  <div class="panel-body">
-    			Add your answer
-    	  </div>
     </div>
   </ng-template>
 </fieldset>
@@ -43,9 +40,7 @@
 
 <div *ngIf="isLogged; else loginsection">
   <div class="card">
-    <!--<div class="container">-->
 
-  <div class="backshadowA">
     <h4 class="card-header">
       Add Answer
     </h4>
@@ -76,16 +71,11 @@
 </form>
     </div>
   </div>
-  <!--</div>-->
-  </div>
 </div>
 
 <ng-template #loginsection>
-  <!--<div class="container">-->
-    <div class="backshadowBox">
       <div class="alert alert-danger alert-dismissable">
         <strong>Please <a routerLink="/enter">Login</a> to add Answer...</strong>
       </div>
-    </div>
-  <!--</div>-->
+
 </ng-template>
