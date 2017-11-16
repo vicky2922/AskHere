@@ -249,11 +249,20 @@ db.question.find({},(err,doc) => {
 
 //Retrieve admin Question
 app.get('/fetchadminquestion',(req,res) => {
-  console.log("Request For:-All Question by user.");
+  console.log("Request For:-All Question by admin.");
 db.adminquestion.find({},(err,doc) => {
   res.json(doc);
 });
 });
+
+//Retrieve admin Answer
+app.get('/fetchadminanswer',(req,res) => {
+  console.log("Request For:-All Answer by admin.");
+db.answer.find({approved:false},(err,doc) => {
+  res.json(doc);
+});
+});
+
 
 //Retrieve your question
 app.get('/fetchyourquestion/:anyvalue',(req,res) => {
@@ -290,6 +299,8 @@ app.get('/fetchthisquestionforadmin/:anyvalue', (req,res) => {
   res.json(doc);
 });
 });
+
+
 
 
 //Add answer to db

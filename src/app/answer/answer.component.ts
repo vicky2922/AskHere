@@ -25,6 +25,7 @@ export class AnswerComponent implements OnInit {
 
   answer:string;
   addAnswerForm:FormGroup;
+  approved:boolean = false;
   answerobject: AnswerObject;
 
   qanswer = [];
@@ -94,7 +95,8 @@ export class AnswerComponent implements OnInit {
     this.answerobject = new AnswerObject(
       this.addAnswerForm.get('answer').value,
       this.askedby,
-      this.questionid
+      this.questionid,
+      this.approved
     );
 
     this.serverservice.addAnswer(this.answerobject).subscribe(

@@ -9,6 +9,7 @@ import {ServerserviceService} from "../service/serverservice.service";
 export class AdminComponent implements OnInit {
 
   questions = [];
+  answers = [];
 
   constructor(private serverservice : ServerserviceService) { }
 
@@ -21,6 +22,16 @@ export class AdminComponent implements OnInit {
       data => {
         this.questions = data;
         this.questions.reverse();
+      },
+      error => {
+        alert('server respond with '+error);
+      },
+    );
+
+    this.serverservice.adminAnswerFetch().subscribe(
+      data => {
+        this.answers = data;
+        this.answers.reverse();
       },
       error => {
         alert('server respond with '+error);

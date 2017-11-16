@@ -22,6 +22,7 @@ import { AnswerComponent } from './answer/answer.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { RelatedqueComponent } from './relatedque/relatedque.component';
+import { CommentComponent } from './comment/comment.component';
 
 
 
@@ -41,7 +42,8 @@ import { RelatedqueComponent } from './relatedque/relatedque.component';
     AnswerComponent,
     UserProfileComponent,
     AdminComponent,
-    RelatedqueComponent
+    RelatedqueComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

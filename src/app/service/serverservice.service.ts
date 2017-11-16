@@ -77,6 +77,11 @@ export class ServerserviceService {
     return this.http.get('/fetchadminquestion').map(res => res.json());
   }
 
+  //Retrieve all answer from admin table database
+  adminAnswerFetch(){
+    return this.http.get('/fetchadminanswer').map(res => res.json());
+  }
+
   //Retrieve question for perticular user id
   yourQuestionFetch(value: string){
     return this.http.get('/fetchyourquestion/' + value).map(res => res.json());

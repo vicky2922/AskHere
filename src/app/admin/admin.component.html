@@ -49,8 +49,43 @@
 
   </div>
   <div class="tab-pane fade" id="tab2">
-    <h2>Tab2</h2>
-    <p>Lorem ipsum.</p>
+    <h2>Answers</h2>
+    <div class="row" *ngIf="answers.length !== 0;else othersection">
+
+      <div *ngFor="let ans of answers; let i = index">
+
+
+        <div class="card">
+
+          <a routerLink="/relatedquestions/{{ans._id}}" style="text-decoration: none;color:black;">
+            <h3 class="card-header">{{ans.answer}}</h3>
+          </a>
+          <!--<div class="card-block">
+            <a href="#" class="btn btn-default">Add To WEB</a>
+            <a href="#" class="btn btn-default">EDIT</a>
+            <a href="#" class="btn btn-default">REMOVE</a>
+          </div>-->
+          <h6>Answered By ᛫ {{ans.askedby}} | question_id ᛫ {{ans.ofqueid}} </h6>
+          <hr>
+        </div>
+
+
+      </div>
+
+    </div>
+    <ng-template #othersection>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Answers for admin part are empty...</h3>
+        </div>
+        <div class="panel-body">
+          You are free now...
+        </div>
+      </div>
+
+    </ng-template>
+
+
   </div>
   <div class="tab-pane fade" id="tab3">
     <h2>Tab3</h2>
