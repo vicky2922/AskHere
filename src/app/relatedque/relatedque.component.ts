@@ -20,6 +20,7 @@ export class RelatedqueComponent implements OnInit {
   thisquestion:string;
   qaskedby:string;
   qtype:string;
+//  upvote:Array<string>;
 
   questionObject: QuestionObject;
 
@@ -104,7 +105,8 @@ export class RelatedqueComponent implements OnInit {
     this.questionObject = new QuestionObject(
       this.thisquestion,
       this.qtype,
-      this.qaskedby
+      this.qaskedby/*,
+      this.upvote*/
 
     );
 

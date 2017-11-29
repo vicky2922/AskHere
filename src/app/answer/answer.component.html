@@ -6,7 +6,11 @@
   </a>
 
   <h6>Type ᛫ {{qtype}} | Asked By ᛫ {{qaskedby}} </h6>
-  <i class="fa fa-toggle-up"></i> upvote | <i class="fa fa-toggle-down"></i> downvote
+  <div *ngIf="isLogged;">
+    <br>
+    <button type="submit" class="btn btn-default fa fa-toggle-up" (click)="upvote()"> upvote</button>
+  <!-- | <button type="submit" class="btn btn-default fa fa-toggle-down" (click)="downvote()"> downvote</button>-->
+  </div>
   <hr>
 </div>
 
@@ -21,8 +25,11 @@
         <div class="card-header"><pre>{{ans.answer}}</pre></div>
       </a>
 
-      <h6> Answered By ᛫ {{ans.askedby}} </h6><br>
-      <i class="fa fa-toggle-up"></i> upvote | <i class="fa fa-toggle-down"></i> downvote
+      <h6> Answered By ᛫ {{ans.askedby}} </h6>
+      <div *ngIf="isLogged;"><br>
+        <button type="submit" class="btn btn-default fa fa-toggle-up" (click)="upvote()"> upvote</button>
+       <!-- | <button type="submit" class="btn btn-default fa fa-toggle-down" (click)="downvote()"> downvote</button>-->
+      </div>
       <hr>
     </div>
   </div>

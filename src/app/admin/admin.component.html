@@ -57,15 +57,20 @@
 
         <div class="card">
 
-          <a routerLink="/relatedquestions/{{ans._id}}" style="text-decoration: none;color:black;">
-            <h3 class="card-header">{{ans.answer}}</h3>
-          </a>
+
+            <h2 class="card-header">{{ans.answer}}</h2>
+
+          <div class="card-block">
+            <a (click)="ApproveAnswer(ans._id)" class="btn btn-default">Add To WEB</a>
+            <a (click)="RemoveAnswer(ans._id)" class="btn btn-default">REMOVE</a>
+          </div>
+
           <!--<div class="card-block">
             <a href="#" class="btn btn-default">Add To WEB</a>
             <a href="#" class="btn btn-default">EDIT</a>
             <a href="#" class="btn btn-default">REMOVE</a>
           </div>-->
-          <h6>Answered By ᛫ {{ans.askedby}} | question_id ᛫ {{ans.ofqueid}} </h6>
+          <h6>Answered By ᛫ {{ans.askedby}} </h6>
           <hr>
         </div>
 

@@ -23,6 +23,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { RelatedqueComponent } from './relatedque/relatedque.component';
 import { CommentComponent } from './comment/comment.component';
+import { SearchstuffComponent } from './searchstuff/searchstuff.component';
 
 
 
@@ -43,7 +44,8 @@ import { CommentComponent } from './comment/comment.component';
     UserProfileComponent,
     AdminComponent,
     RelatedqueComponent,
-    CommentComponent
+    CommentComponent,
+    SearchstuffComponent
   ],
   imports: [
     BrowserModule,

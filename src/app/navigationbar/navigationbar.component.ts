@@ -24,7 +24,7 @@ export class NavigationbarComponent implements OnInit {
   searchKey: string;
   morc: string;
   SearchForm:FormGroup;
-  suggestion:any =['Loading...'];
+  suggestions:any = ['Loading...'];
   searchby:boolean = false;
 
 
@@ -71,8 +71,7 @@ export class NavigationbarComponent implements OnInit {
     );
 
     this.SearchForm = new FormGroup({
-      'SearchKey': new FormControl(null, [Validators.required]),
-      'Selected': new FormControl('question', [Validators.required])
+      'SearchKey': new FormControl(null, [Validators.required])
     });
 
 
@@ -154,6 +153,34 @@ export class NavigationbarComponent implements OnInit {
    // this.LoginDataService.statusUpdated.emit({_id:'NotID', username: 'NotLoggedIn', email: 'NoEmailLoggedIn', flag: false});
     //this.LoginDataService.adminstatus.emit({flag:false});
     //this.route.navigate(['/']);
+  }
+
+
+  searchstart() {
+    //alert(this.SearchForm.get('SearchKey').value );
+    //this.SearchForm.reset({Selected:'Movie'});
+    this.route.navigate(['/search/' + this.SearchForm.get('SearchKey').value]);
+  }
+
+  findsuggestion(){
+    if(this.SearchForm.get('SearchKey').value !== ''){
+     // if(this.SearchForm.get('Selected').value == 'Movie'){
+        this.searchby=false;
+        this.serverservice.getQuestionSuggestions(this.SearchForm.get('SearchKey').value).subscribe(
+          data => {
+            //console.log(data);
+            this.suggestions=data;
+          }
+        );
+    //  }else{
+        this.searchby=true;
+        this.serverservice.getUserSuggestions(this.SearchForm.get('SearchKey').value).subscribe(
+          data => {
+            this.suggestions=data;
+          }
+        )
+    //  }
+    }
   }
 
 }

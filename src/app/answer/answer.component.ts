@@ -4,6 +4,7 @@ import {LoginserviceService} from "../service/loginservice.service";
 import {ServerserviceService} from "../service/serverservice.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AnswerObject} from "../Objects/answerobject";
+import {QuestionObject} from "../Objects/questionobject";
 
 @Component({
   selector: 'app-answer',
@@ -21,12 +22,14 @@ export class AnswerComponent implements OnInit {
   thisquestion:string;
   qaskedby:string;
   qtype:string;
-
+ // upvoted:Array<string>;
 
   answer:string;
   addAnswerForm:FormGroup;
   approved:boolean = false;
   answerobject: AnswerObject;
+
+  questionObject: QuestionObject;
 
   qanswer = [];
 
@@ -79,6 +82,7 @@ export class AnswerComponent implements OnInit {
         this.thisquestion = data2.question;
         this.qaskedby = data2.askedby;
         this.qtype = data2.type;
+       // this.upvoted = data2.upvote;
 
     //   alert(this.thisquestion+this.qaskedby+this.qtype );
 
@@ -121,9 +125,7 @@ export class AnswerComponent implements OnInit {
 
 
   //Retrieve answer for perticuler question id...
-
   refreshyouranswer() {
-
     this.loginservice.callbackforlogin.emit('sent data...');
    //alert(this.questionid);
     this.serverservice.AnswerofQuestion(this.questionid).subscribe(
@@ -136,5 +138,39 @@ export class AnswerComponent implements OnInit {
       },
     );
   }
+
+
+
+  //upvote user name on click
+  upvote(){
+    alert('upvote by ' + this.askedby);
+   /* this.upvoted.push(this.askedby);
+    this.updatequestion();*/
+  }
+
+/*
+
+  //after adding vote update question
+  updatequestion(){
+    this.questionObject = new QuestionObject(
+      this.thisquestion,
+      this.qtype,
+      this.qaskedby/!*,
+      this.upvoted*!/
+
+    );
+
+    this.serverservice.updateQuestion(this.questionObject,this.questionid).subscribe(
+      data => {
+
+        alert("server respond : " + data.serverMessage);
+      },
+      error => {
+        alert("server respond with" + error);
+      }
+    );
+  }
+*/
+
 
 }

@@ -1,0 +1,113 @@
+
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Question_title</a></li>
+  <li><a href="#tab2" role="tab" data-toggle="tab">Question_type</a></li>
+  <li><a href="#tab3" role="tab" data-toggle="tab">Question_asker</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="active tab-pane fade in" id="tab1">
+    <h2>Question_title</h2>
+<div *ngIf="searchfound===true;else othersection">
+    <div class="row col-xs-12 text-left">
+      <h4>Search Found for '{{searchKey}}'</h4>
+      <hr>
+    </div>
+
+    <div class="row col-xs-12" *ngFor="let questionGot of questions">
+      <div class="col-xs-1"></div>
+
+      <div class="col-xs-10 text-center">
+        <div class="panel panel-default">
+
+          <div class="panel-heading text-left doover">
+            <a class="btn-link" routerLink="/answer/{{questionGot._id}}"  style="text-decoration: none;color:black;"><h4>{{questionGot.question}}</h4></a>
+          </div>
+
+          <h6>Type ᛫ {{questionGot.type}} | Asked By ᛫ {{questionGot.askedby}} </h6>
+
+          </div>
+        </div>
+      </div>
+  </div>
+    <ng-template #othersection>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">There is no search found for {{searchKey}} in question title</h3>
+        </div>
+
+      </div>
+    </ng-template>
+    </div>
+  <div class="tab-pane fade" id="tab2">
+    <h2>Type</h2>
+<div *ngIf="searchfoundt===true;else othersectiont">
+    <div class="row col-xs-12 text-left">
+      <h4>Search Found for '{{searchKey}}'</h4>
+      <hr>
+    </div>
+    <div class="row col-xs-12" *ngFor="let questionGot of questionst">
+      <div class="col-xs-1"></div>
+
+      <div class="col-xs-10 text-center">
+        <div class="panel panel-default">
+
+          <div class="panel-heading text-left doover">
+            <a class="btn-link" routerLink="/answer/{{questionGot._id}}"  style="text-decoration: none;color:black;"><h4>{{questionGot.question}}</h4></a>
+          </div>
+
+          <h6>Type ᛫ {{questionGot.type}} | Asked By ᛫ {{questionGot.askedby}} </h6>
+
+        </div>
+      </div>
+    </div>
+  </div>
+    <ng-template #othersectiont>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">There is no search found for {{searchKey}} in question type</h3>
+        </div>
+
+      </div>
+    </ng-template>
+  </div>
+  <div class="tab-pane fade" id="tab3">
+    <h2>Asker</h2>
+    <div *ngIf="searchfounda === true;else othersectiona">
+    <div class="row col-xs-12 text-left">
+      <h4>Search Found for '{{searchKey}}'</h4>
+      <hr>
+    </div>
+    <div class="row col-xs-12" *ngFor="let questionGot of questionsa">
+      <div class="col-xs-1"></div>
+
+      <div class="col-xs-10 text-center">
+        <div class="panel panel-default">
+
+          <div class="panel-heading text-left doover">
+            <a class="btn-link" routerLink="/answer/{{questionGot._id}}"  style="text-decoration: none;color:black;"><h4>{{questionGot.question}}</h4></a>
+          </div>
+
+          <h6>Type ᛫ {{questionGot.type}} | Asked By ᛫ {{questionGot.askedby}} </h6>
+
+        </div>
+      </div>
+    </div>
+  </div>
+    <ng-template #othersectiona>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">There is no search found for {{searchKey}} in question asker</h3>
+        </div>
+
+      </div>
+    </ng-template>
+  </div>
+
+
+
+
+</div>
+
+

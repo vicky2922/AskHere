@@ -8,8 +8,8 @@ var cors = require('cors')
 const path = require('path')
 var mongojs = require('mongojs');
 
-var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
-//var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
+//var db = mongojs('mongodb://14bce013:14bce013@ds151062.mlab.com:51062/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
+var db = mongojs('mongodb://localhost/quoradb',['userdata','question','answer','adminquestion','session']);  //db path and collections
 var bodyParser = require('body-parser');
 
 var ipfind = require('ip')
@@ -285,6 +285,38 @@ app.delete('/deletequestion/:anyvalue', (req,res) => {
 })
 });
 
+
+//delete answer by admin
+app.delete('/deleteanswerbyadmin/:anyvalue', (req,res) => {
+  db.answer.remove({_id:mongojs.ObjectID(req.param('anyvalue'))},(err,doc) => {
+  res.json({serverMessage:'Answer Deleted from admin side!'});
+})
+});
+
+//approve answer by admin
+app.put('/approveanswerbyadmin/:anyvalue', (req,res) => {
+  var id = req.param('anyvalue')
+  var change = {approve: true};
+
+  db.answer.findAndModify({
+    query: {
+      _id: mongojs.ObjectID(id)
+    },
+    update: {
+      $set: {
+        approved: true
+      }
+    },
+    new: true
+  },
+  (err, doc) => {
+    res.json({serverMessage:'Answer Approved from admin side!'});
+  })
+
+  })
+
+
+
 //fetch question detail for answer purpose
 app.get('/fetchthisquestion/:anyvalue', (req,res) => {
   db.question.findOne({_id: mongojs.ObjectID(req.param('anyvalue'))}, (err, doc) => {
@@ -311,6 +343,14 @@ db.answer.insert(req.body,(err,doc) => {
 });
 });
 
+/*
+//update question detail after votes REMAINING....
+app.post('updatequestion/:anyvalue', (req,res) => {
+  db.question.update({_id: mongojs.ObjectID(req.param('anyvalue')),req.body}, (err,doc)=>
+  res.json({serverMessage:"q updated..."});
+  });
+});
+*/
 //Retrive answer from db
 
 app.get('/fetchqanswer/:anyvalue',(req,res) => {
@@ -335,6 +375,87 @@ app.get('/fetchrelatedquestions/:anyvalue',(req,res) => {
 });
 });
 
+
+
+
+
+
+
+
+
+
+//Search stuff................
+
+
+
+
+
+//Question Suggestions
+app.get('/getQuestionSuggestions/:anyvalue',(req,res)=>{
+  console.log("Request for suggestion-->"+req.param('anyvalue'))
+db.question.find({
+  question: {
+    $regex: req.param('anyvalue'),
+    $options: "$i"
+  }
+}, (err, doc) => {
+  res.json(doc)
+})
+})
+
+
+//Users Suggestions
+app.get('/getUserSuggestions/:anyvalue',(req,res)=>{
+  console.log("Request for suggestion-->"+req.param('anyvalue'))
+db.userdata.find({
+  username: {
+    $regex: req.param('anyvalue'),
+    $options: "$i"
+  }
+}, (err, doc) => {
+  res.json(doc)
+})
+})
+
+
+//Question search by Q
+app.get('/SearchQuestionByQ/:anyvalue', (req, res) => {
+  console.log("Request For:-Search Question by question_title.")
+db.question.find({
+  question: {
+    $regex: req.param('anyvalue'),
+    $options: "$i"
+  }
+}, (err, doc) => {
+  res.json(doc)
+})
+})
+
+//Question search by Type
+app.get('/SearchQuestionByType/:anyvalue', (req, res) => {
+  console.log("Request For:-Search Question by type.")
+db.question.find({
+  type: {
+    $regex: req.param('anyvalue'),
+    $options: "$i"
+  }
+}, (err, doc) => {
+  res.json(doc)
+})
+})
+
+//Question search by asker
+app.get('/SearchQuestionByAsk/:anyvalue', (req, res) => {
+  console.log("Request For:-Search Question by asker.")
+db.question.find({
+  askedby: {
+    $regex: req.param('anyvalue'),
+    $options: "$i"
+  }
+}, (err, doc) => {
+  res.json(doc)
+})
+})
 
 
 /*

@@ -19,16 +19,24 @@
       <li role="presentation" routerLinkActive="active"><a routerLink="/question">Question <i class="fa fa-pencil-square-o"></i></a></li>
       <li role="presentation" routerLinkActive="active"><a routerLink="/answer">Answer</a></li>
       <li>
-        <form class="navbar-form navbar-left">
+
+
+        <form class="navbar-form navbar-left" [formGroup]="SearchForm" (ngSubmit)="searchstart()">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search"
+                   formControlName="SearchKey" (keypress)="findsuggestion()">
+            <datalist id="suggestions">
+              <option *ngFor="let suggest of suggestions">
+            </datalist>
             <div class="input-group-btn">
-              <button class="btn btn-default" type="submit" routerLink="/search">
+              <button class="btn btn-default" type="submit" [disabled]="!SearchForm.valid">
                 <i class="glyphicon glyphicon-search"></i>
               </button>
             </div>
           </div>
         </form>
+
+
       </li>
 		</ul>
 

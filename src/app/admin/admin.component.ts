@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServerserviceService} from "../service/serverservice.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin',
@@ -11,7 +12,7 @@ export class AdminComponent implements OnInit {
   questions = [];
   answers = [];
 
-  constructor(private serverservice : ServerserviceService) { }
+  constructor(private route2 : Router,private serverservice : ServerserviceService) { }
 
   ngOnInit() {
     this.refresh();
@@ -38,5 +39,38 @@ export class AdminComponent implements OnInit {
       },
     );
   }
+
+  //Approve answer by admin
+  ApproveAnswer(id:string){
+    this.serverservice.ApproveAnswerByAdmin(id).subscribe(
+        data => {
+          alert('server response : ' + data.serverMessage);
+        },
+      error => {
+          alert('server response : ' + error);
+      }
+    );
+    this.route2.navigate(['admin']);
+    this.refresh();
+  }
+
+
+
+  //Delete Answer by admin...
+  RemoveAnswer(id:string){
+    this.serverservice.DeleteAnswerByAdmin(id).subscribe(
+      data => {
+        alert('server response : ' + data.serverMessage);
+        // this.refreshyourquestion();
+      },
+      error => {
+        alert('server response : ' + error);
+      }
+
+    );
+    this.route2.navigate(['admin']);
+    this.refresh();
+  }
+
 
 }

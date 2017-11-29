@@ -14,6 +14,7 @@ import {AnswerComponent} from "./answer/answer.component";
 import {AdminComponent} from "./admin/admin.component";
 import {RelatedqueComponent} from "./relatedque/relatedque.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {SearchstuffComponent} from "./searchstuff/searchstuff.component";
 
 
 
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
 
   {path:'userprofile/:id', component:UserProfileComponent},
   {path:'admin', component:AdminComponent},
+  {path: 'search/:id', component: SearchstuffComponent},
   {path: 'relatedquestions/:id', component:RelatedqueComponent},
 
 

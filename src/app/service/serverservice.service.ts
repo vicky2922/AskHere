@@ -82,6 +82,16 @@ export class ServerserviceService {
     return this.http.get('/fetchadminanswer').map(res => res.json());
   }
 
+  //Delete Answer by admin
+  DeleteAnswerByAdmin(value: string){
+    return this.http.delete('/deleteanswerbyadmin/'+ value).map(res => res.json());
+  }
+
+  //Approve answer by admin
+  ApproveAnswerByAdmin(value:string){
+    return this.http.put('/approveanswerbyadmin/'+ value, true).map(res => res.json());
+  }
+
   //Retrieve question for perticular user id
   yourQuestionFetch(value: string){
     return this.http.get('/fetchyourquestion/' + value).map(res => res.json());
@@ -96,7 +106,12 @@ export class ServerserviceService {
   fetchquestiondetailforanswer(value: string){
     return this.http.get('/fetchthisquestion/'+value).map(res => res.json());
   }
-
+/*
+  //update question after vote
+  updateQuestion(questionObject: QuestionObject, qid: string){
+    return this.http.post('/updatequestion/'+qid , questionObject).map(res => res.json());
+  }
+*/
   //fetch question detail for admin
   fetchquestiondetailforadmin(value: string){
     return this.http.get('/fetchthisquestionforadmin/'+value).map(res => res.json());
@@ -114,6 +129,34 @@ export class ServerserviceService {
 //Related question retrival at admn side for perticular question from db
   RelatedQuestion(value: string){
     return this.http.get('/fetchrelatedquestions/'+value).map(res => res.json());
+  }
+
+
+
+
+
+
+
+  //Search stuff.........................
+
+  getQuestionSuggestions(value:string){
+    return this.http.get('/getQuestionSuggestions/'+value).map(res => res.json());
+  }
+
+  getUserSuggestions(value:string){
+    return this.http.get('/getUserSuggestions/'+value).map(res => res.json());
+  }
+
+  SearchQuestionByQ(value:string){
+    return this.http.get('/SearchQuestionByQ/'+value).map(res => res.json());
+  }
+
+  SearchQuestionByType(value:string){
+  return this.http.get('/SearchQuestionByType/'+value).map(res => res.json());
+  }
+
+  SearchQuestionByAsk(value:string){
+    return this.http.get('/SearchQuestionByAsk/'+value).map(res => res.json());
   }
 
 
