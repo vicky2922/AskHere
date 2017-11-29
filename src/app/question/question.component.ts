@@ -32,7 +32,7 @@ export class QuestionComponent implements OnInit {
   typebool = [false,false,false,false,false,false,false,false,false];
   tempquestion:string = '';
 
-//  upvote:Array<string>;
+  upvoted:Array<string> = [];
   AddQuestionForm: FormGroup;
   questionObject: QuestionObject;
 
@@ -92,8 +92,8 @@ export class QuestionComponent implements OnInit {
     this.questionObject = new QuestionObject(
       this.AddQuestionForm.get('question').value,
       this.typeString,
-      this.askedby/*,
-      this.upvote*/
+      this.askedby,
+      this.upvoted
 
     );
 

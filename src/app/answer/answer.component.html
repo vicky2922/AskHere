@@ -8,7 +8,13 @@
   <h6>Type ᛫ {{qtype}} | Asked By ᛫ {{qaskedby}} </h6>
   <div *ngIf="isLogged;">
     <br>
-    <button type="submit" class="btn btn-default fa fa-toggle-up" (click)="upvote()"> upvote</button>
+    <div *ngIf="isvoted===true;else othersection">
+      <button type="submit" class="btn btn-default fa fa-toggle-down" (click)="upvote()"> downvote</button>
+    </div>
+    <ng-template #othersection>
+      <button type="submit" class="btn btn-default fa fa-toggle-up" (click)="upvote()"> upvote</button>
+    </ng-template>
+    {{upvoted.length}}
   <!-- | <button type="submit" class="btn btn-default fa fa-toggle-down" (click)="downvote()"> downvote</button>-->
   </div>
   <hr>

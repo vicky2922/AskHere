@@ -343,14 +343,33 @@ db.answer.insert(req.body,(err,doc) => {
 });
 });
 
-/*
+
 //update question detail after votes REMAINING....
-app.post('updatequestion/:anyvalue', (req,res) => {
-  db.question.update({_id: mongojs.ObjectID(req.param('anyvalue')),req.body}, (err,doc)=>
-  res.json({serverMessage:"q updated..."});
-  });
+app.put('/updatequestion/:anyvalue', (req,res) => {
+
+  var id = req.param('anyvalue');
+
+
+db.question.findAndModify({
+    query: {
+      _id: mongojs.ObjectID(id)
+    },
+    update: {
+      $set: {
+        upvoted : req.body.upvoted
+      }
+    },
+    new: true
+  },
+  (err, doc) => {
+  res.json({serverMessage: 'Question updated after vote..!'});
+
+
 });
-*/
+});
+
+
+
 //Retrive answer from db
 
 app.get('/fetchqanswer/:anyvalue',(req,res) => {

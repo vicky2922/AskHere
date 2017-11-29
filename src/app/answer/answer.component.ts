@@ -22,7 +22,7 @@ export class AnswerComponent implements OnInit {
   thisquestion:string;
   qaskedby:string;
   qtype:string;
- // upvoted:Array<string>;
+  upvoted:Array<string> = [];
 
   answer:string;
   addAnswerForm:FormGroup;
@@ -32,6 +32,8 @@ export class AnswerComponent implements OnInit {
   questionObject: QuestionObject;
 
   qanswer = [];
+
+  isvoted:boolean;
 
   afterAddMessageflag:boolean = false; //after submission message
 
@@ -46,6 +48,7 @@ export class AnswerComponent implements OnInit {
     this.addAnswerForm = new FormGroup({
       'answer' : new FormControl(null, [Validators.required])
     });
+
 
 
   }
@@ -69,6 +72,7 @@ export class AnswerComponent implements OnInit {
 
     this.refreshyouranswer();
 
+
   }
 
   //fetching details of question...
@@ -82,8 +86,8 @@ export class AnswerComponent implements OnInit {
         this.thisquestion = data2.question;
         this.qaskedby = data2.askedby;
         this.qtype = data2.type;
-       // this.upvoted = data2.upvote;
-
+        this.upvoted = data2.upvoted;
+        this.checkvoted();
     //   alert(this.thisquestion+this.qaskedby+this.qtype );
 
       },
@@ -91,6 +95,7 @@ export class AnswerComponent implements OnInit {
         alert('server respond with ' +error);
       }
     );
+
   }
 
   //Add answer to db
@@ -139,24 +144,51 @@ export class AnswerComponent implements OnInit {
     );
   }
 
+  checkvoted(){
+    if(this.upvoted.indexOf(this.askedby)>-1){
+      this.isvoted = true;
+    }
+    else{
+      this.isvoted = false;
+    }
+  }
+
 
 
   //upvote user name on click
   upvote(){
-    alert('upvote by ' + this.askedby);
-   /* this.upvoted.push(this.askedby);
-    this.updatequestion();*/
+
+    //alert(this.isvoted);
+    if(this.upvoted.indexOf(this.askedby)>-1){
+    //  alert('upvote by ' + this.askedby);
+      alert('Already voted...');
+      alert('votes before removing: ' + this.upvoted);
+
+      this.upvoted.splice(this.upvoted.indexOf(this.askedby),1);
+
+      alert('Vote back...');
+    }
+    else{
+      alert('upvote by ' + this.askedby);
+      this.upvoted.push(this.askedby);
+      alert('votes after adding: ' + this.upvoted);
+
+    }
+    this.updatequestion();
+
+    this.checkvoted();
+
   }
 
-/*
+
 
   //after adding vote update question
   updatequestion(){
     this.questionObject = new QuestionObject(
       this.thisquestion,
       this.qtype,
-      this.qaskedby/!*,
-      this.upvoted*!/
+      this.qaskedby,
+      this.upvoted
 
     );
 
@@ -170,7 +202,7 @@ export class AnswerComponent implements OnInit {
       }
     );
   }
-*/
+
 
 
 }

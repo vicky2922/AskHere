@@ -106,12 +106,12 @@ export class ServerserviceService {
   fetchquestiondetailforanswer(value: string){
     return this.http.get('/fetchthisquestion/'+value).map(res => res.json());
   }
-/*
+
   //update question after vote
   updateQuestion(questionObject: QuestionObject, qid: string){
-    return this.http.post('/updatequestion/'+qid , questionObject).map(res => res.json());
+    return this.http.put('/updatequestion/'+qid , questionObject).map(res => res.json());
   }
-*/
+
   //fetch question detail for admin
   fetchquestiondetailforadmin(value: string){
     return this.http.get('/fetchthisquestionforadmin/'+value).map(res => res.json());
